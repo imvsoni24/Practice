@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="create">
+    <h1>Add a Stock To Portfolio</h1>
+    <form>
+      <input placeholder="Company Name" id="compName" type="text" />
+      <select id="listedExchange">
+        <option value="">Select Listed Market</option>
+        <option value="NSC">NSC</option>
+        <option value="BSC">BSC</option>
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="NYSE">NYSE</option>
+      </select>
+      <select id="industry">
+        <option value="">Select Industry</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Media">Media</option>
+        <option value="Pharmaceutical">Pharmaceutical</option>
+        <option value="Finance">Finance</option>
+      </select>
+      <input type="number" id="stockPrice" placeholder="Stock Price" />
+      <input type="number" id="quantity" placeholder="Buying Quantity" />
+      <select id="type">
+        <option value="">Select Type</option>
+        <option value="Snall Cap">Small Cap</option>
+        <option value="Mid Cap">Mid Cap</option>
+        <option value="Large Cap">Large Cap</option>
+      </select>
+      <input type="submit" value="Add In Portfolio" />
+    </form>
+  </div>
+  <h1>Total No of Stocks:- <span id="noOfStock">0</span></h1>
+  <h1>Total Portfolio Value:- <span id="totalPortfolio">0</span></h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Listed Exchange Name</th>
+        <th>Industry</th>
+        <th>Buying Price</th>
+        <th>Quantity</th>
+        <th>Company Type</th>
+        <th>Total Price</th>
+        <th>Date Added</th>
+        <th>Sell Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Append elements using JS here  -->
+    </tbody>
+  </table>
+</body>
+<script src="./index.js"></script>
+
+</html>

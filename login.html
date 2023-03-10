@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <input placeholder="email" id="email" type="text" />
+      <input type="password" id="pass" placeholder="password" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
+<script>
+  let arr = JSON.parse(localStorage.getItem("signup")) || [];
+  console.log(arr);
+  let form = document.querySelector("form");
+  form.addEventListener("submit", login);
+  function login(e) {
+    e.preventDefault();
+    let data = {
+      email: form.email.value,
+      pass: form.pass.value,
+    };
+    let found = false;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].email == data.email && arr[i].pass == data.pass) {
+        found = true;
+        break;
+      }
+    }
+    if (found) {
+      alert("Login successfull");
+    } else {
+      alert("User credentials are wrong");
+    }
+  }
+</script>
