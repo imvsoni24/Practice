@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .append img {
+        width: 300px;
+      }
+      .append {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    </style>
+  </head>
+  <body>
+    <input id="id" placeholder="id" type="text" />
+    <input id="caption" placeholder="caption" type="text" />
+    <input id="image" placeholder="image" type="text" />
+    <button id="create">Create Post</button>
+
+    <div class="append" id="append"></div>
+    <div id="buttons"></div>
+  </body>
+</html>
+<script>
+  document.getElementById("create").addEventListener("click", post);
+  async function post() {
+    let id = document.getElementById("id").value;
+    let caption = document.getElementById("caption").value;
+    let image = document.getElementById("image").value;
+    let data = {
+      id: id,
+      caption: caption,
+      image: image,
+    };
+    let response = await fetch("http://localhost:3000/post", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    // console.log(response);
+  }
+  let currentPage = 1;
+  const dataPerPage = 3;
+
+  async function getData(page) {
+    let response = await fetch(
+      `http://localhost:3000/post?_page=${page}&_limit=${dataPerPage}`
+    );
+    response = await response.json();
+    document.getElementById("append").innerHTML = "";
+    response.forEach(function (el, i) {
+      let div = document.createElement("div");
+      let image = document.createElement("img");
+      image.src = el.image;
+      let caption = document.createElement("p");
+      caption.innerText = el.caption;
+      div.append(image, caption);
+      document.getElementById("append").append(div);
+    });
+  }
+  getData(currentPage);
+let prevBtn = document.createElement("button");
+let nextBtn = document.createElement("button");
+let buttons;
+  const createButtons = (totaldata, dataPerPage) => {
+    buttons=Math.ceil(totaldata / dataPerPage);
+    document.getElementById("buttons").innerHTML = "";
+    prevBtn.innerText = "Prev";
+    prevBtn.onclick = () => {
+      displayPage(currentPage - 1);
+    };
+    document.getElementById("buttons").append(prevBtn);
+    for (let i = 1; i <= buttons; i++) {
+      let btn = document.createElement("button");
+      btn.innerText = i;
+      btn.onclick = () => {
+        displayPage(i);
+      };
+      document.getElementById("buttons").append(btn);
+    }
+    
+    nextBtn.innerText = "Next";
+    nextBtn.onclick = () => {
+      displayPage(currentPage + 1);
+    };
+    document.getElementById("buttons").append(nextBtn);
+  };
+
+  function displayPage(page) {
+    
+    currentPage = page;
+    prevBtn.disabled = currentPage===1
+    nextBtn.disabled = currentPage==buttons
+    getData(page);
+  }
+  async function getTotalData() {
+    let response = await fetch("http://localhost:3000/post");
+    response = await response.json();
+    let totalData = response.length;
+    createButtons(totalData, dataPerPage);
+  }
+
+  getTotalData();
+</script>
