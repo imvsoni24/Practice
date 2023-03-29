@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home Page</a>
+        <a href="admin.html">Admin Dashboard</a>
+        <a href="hotel.html">Hotels Page</a>
+    </div>
+
+    <form action="" id="form">
+        <select name="" id="category">
+            <option value="">Select Category</option>
+            <option value="family">Family</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="suite">Suite</option>
+        </select><br><br>
+        <input type="text" placeholder="enter image url" id="image"><br><br>
+        <label for="">Type of room</label><br>
+        <label for="ac">A.C</label>
+        <input type="radio" name="room" checked id="ac" value="ac">
+        
+        <label for="nonAc">Non A.C</label>
+        <input type="radio" name="room" id="nonAc" value="nonAc"><br><br>
+        <select name="" id="bed">
+            <option value="">Select Room Type</option>
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+        </select><br><br>
+        <input type="text" name="" id="adult" placeholder="No. of adults"><br><br>
+        <input type="text" id="capacity" placeholder="Max capacity"><br><br>
+        <input type="text" id="cost" placeholder="Cost"><br><br>
+        <input type="submit" value="Add">
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Category</th>
+                <th>Type of room</th>
+                <th>Bed type</th>
+                <th>No of persons</th>
+                <th>Capacity</th>
+                <th>Cost</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <dialog id="dialog">
+        <select name="" id="updatecategory">
+            <option value="">Update Category</option>
+            <option value="family">Family</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="suite">Suite</option>
+        </select><br><br>
+        <input type="text" placeholder="Update image url" id="updateimage"><br><br>
+        <label for="">Type of room</label><br>
+        <label for="ac">A.C</label>
+        <input type="radio" name="updateroom" checked id="updateac" value="ac">
+        
+        <label for="nonAc">Non A.C</label>
+        <input type="radio" name="updateroom" id="updatenonAc" value="nonAc"><br><br>
+        <select name="" id="updatebed">
+            <option value="">Update Room Type</option>
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+        </select><br><br>
+        <input type="text" name="" id="updateadult" placeholder="No. of adults"><br><br>
+        <input type="text" id="updatecapacity" placeholder="Max capacity"><br><br>
+        <input type="text" id="updatecost" placeholder="Cost"><br><br>
+        <button id="cancel" type="reset">Cancel</button>
+        <button id="update">Update</button>
+    </dialog>
+</body>
+</html>
+<script src="admin.js"></script>

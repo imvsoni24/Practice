@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    font-size: 30px;
+    background-color: grey;
+    padding: 20px;
+}
+.navbar a{
+    text-decoration: none;
+    color: white;
+}
+#mainDiv{
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    width: 50%;
+    margin: auto;
+    gap:50px
+}
+
+#buttons{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#buttons>button{
+    text-align: center;
+    padding: 10px;
+}
