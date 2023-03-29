@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Page</title>
+    <style>
+      /* All Your css for Cart page goes here  */
+      #cart-container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 30px;
+        width: 80%;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <h1>Web E-Commerce</h1>
+      <a href="./index.html">Home</a>
+      <a href="./cart.html">Cart</a>
+    </div>
+    <h1 id="total">
+      Your total order value is :- <span id="cart-total">0</span>
+    </h1>
+    <div id="cart-container">
+      <!-- Here Append All the Cart Cards here-->
+    </div>
+  </body>
+  <script type="module">
+    let arr = JSON.parse(localStorage.getItem("cart"))  ||  [];
+    let container = document.getElementById("cart-container");
+    let total =0;
+    function getCartData(arr){
+      container.innerHTML=null;
+      arr.forEach(async function(id){
+          let res = await fetch(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products/${id}`)
+          res = await res.json()
+          let data = res.data
+          // console.log(data)
+          let div = document.createElement("div");
+          let image = document.createElement("img");
+          image.src = data.image
+          let title = document.createElement("h4")
+          title.innerText=data.title;
+          let brand = document.createElement("p");
+          brand.innerText=data.brand
+          let category = document.createElement("p");
+          category.innerText=data.category
+          let price =document.createElement("p")
+          price.innerText=data.price
+          div.append(image,title,brand,category,price)
+          container.append(div)
+          total+=data.price
+          console.log(total)
+          document.getElementById("cart-total").innerText=total
+      })
+    }
+    getCartData(arr)
+  </script>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      /* All CSS For Home Page Goes Here  */
+      .main{
+        display: flex;
+      }
+      .main>#filter{
+        width: 30%;
+      }
+      .main>#product-container{
+        width: 70%;
+      }
+      #product-container>div{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <h1>Web E-Commerce</h1>
+      <a href="./index.html">Home</a>
+      <a href="./cart.html">Cart</a>
+    </div>
+    <h1 id="alert"></h1>
+    <main class="main">
+      <div id="filter">
+        <div id="brand-filter">
+          <h2>Filter By Brands</h2>
+          <div>
+            <input type="checkbox" value="roadster"  id="roadster" />
+            <p>Roadster</p>
+          </div>
+          <div>
+            <input type="checkbox" value="blackberrys"  id="blackberrys" />
+            <p>Blackberrys</p>
+          </div>
+          <div>
+            <input type="checkbox"  id="van-heusen" />
+            <p>Van Heusen</p>
+          </div>
+          <div>
+            <input type="checkbox"  id="allen-solly" />
+            <p>Allen Solly</p>
+          </div>
+          <div>
+            <input type="checkbox"  id="twills" />
+            <p>Twills</p>
+          </div>
+        </div>
+        <div id="category-filter">
+          <h2>Filter By Categories</h2>
+          <div>
+            <input type="checkbox" value="men" id="men" />
+            <p>Men</p>
+          </div>
+          <div>
+            <input type="checkbox" value="women"  id="women" />
+            <p>Women</p>
+          </div>
+          <div>
+            <input type="checkbox"  id="homedecor" />
+            <p>Homedecor</p>
+          </div>
+          <div>
+            <input type="checkbox"  id="kids" />
+            <p>Kids</p>
+          </div>
+        </div>
+      </div>
+      <div id="product-container">
+        <div id="appendDiv">
+          <!-- Here Append All the Products  -->
+        </div>
+      </div>
+    </main>
+  </body>
+  <script type="module">
+    
+    
+    // All Your Script for Home Page Goes Here
+    let roadster = document.getElementById("roadster")
+    let blackberrys = document.getElementById("blackberrys")
+    let men = document.getElementById("men")
+    let women = document.getElementById("women")
+    roadster.addEventListener("change",getData)
+    blackberrys.addEventListener("change",getData)
+    men.addEventListener("change",getData)
+    women.addEventListener("change",getData)
+    async function getData(){
+    
+    let url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products`;
+    if((roadster.checked || blackberrys.checked)&&(men.checked||women.checked)){
+      
+      url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products?brand=${roadster.value}&brand=${blackberrys.value}&category=${men.value}&category=${women.value}`;
+     
+    }
+    if((roadster.checked || blackberrys.checked)&&!(men.checked||women.checked)){
+      url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products?brand=${roadster.value}&brand=${blackberrys.value}`;
+      
+    }
+    if(!(roadster.checked || blackberrys.checked)&&(men.checked||women.checked)){
+      url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-products?category=${men.value}&category=${women.value}`;
+    
+    }
+
+    let res = await fetch(url)
+    
+    res = await res.json()
+    console.log(res)
+    res = res.data
+    
+    appendData(res)
+    }
+    getData()
+    
+    let container = document.getElementById("appendDiv");
+    function appendData(data){
+      container.innerHTML=null;
+      data.forEach(function (el,i){
+          let div = document.createElement("div");
+          let image = document.createElement("img");
+          image.src = el.image
+          let title = document.createElement("h4")
+          title.innerText=el.title;
+          let brand = document.createElement("p");
+          brand.innerText=el.brand
+          let category = document.createElement("p");
+          category.innerText=el.category
+          let price =document.createElement("p")
+          price.innerText=el.price
+          let cartBtn = document.createElement("button");
+          cartBtn.innerText="Add To Cart"
+          cartBtn.addEventListener("click",function (){
+            addToStorage(el)
+          })
+          div.append(image,title,brand,category,price,cartBtn)
+          container.append(div)
+      })
+    }
+    function addToStorage(el){
+      let arr = JSON.parse(localStorage.getItem("cart"))  ||  [];
+      let found = false;
+      for(let i=0;i<arr.length;i++){
+        if(arr[i]==el.id){
+          found=true;
+          break;
+        }
+      }
+      if(found){
+        document.getElementById("alert").innerText="Product already in the cart"
+      }else{
+        arr.push(el.id);
+        localStorage.setItem("cart",JSON.stringify(arr))
+        document.getElementById("alert").innerText="Product added to The cart"
+      }
+      
+    }
+  </script>
+</html>
