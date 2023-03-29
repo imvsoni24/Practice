@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: space-around;
+        }
+        a{
+            text-decoration: none;
+            font-size: 30px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      <a href="index.html">Leave Request Page</a>
+      <a href="dashboard.html">Dashboard Page</a>
+      <a href="status.html">Status Page</a>
+    </div>
+    <input oninput="search()" type="text" placeholder="Search by name" id="search">
+    <select name="" id="filter">
+        <option value="all">All</option>
+        <option value="student">Student</option>
+        <option value="employee">Employee</option>
+      </select>
+    <table>
+        <thead>
+           <tr>
+             <th>Id</th>
+            <th>Name</th>
+            <th>Reason for leave</th>
+            <th>Designation</th>
+            <th>Leave start date</th>
+            <th>Leave end date</th>
+            <th>Overseer</th>
+            <th>OTP</th>
+            <th>Reject leave</th>
+            <th>Grant leave</th>
+           </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+    
+    <dialog id="userDialog">
+        
+    </dialog>
+
+  </body>
+</html>
+<script src="dashboard.js"></script>

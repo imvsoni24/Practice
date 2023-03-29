@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        div{
+            display: flex;
+            justify-content: space-around;
+        }
+        a{
+            text-decoration: none;
+            font-size: 30px;
+            width: 100%;
+            text-align: center;
+        }
+        form{
+            width: 50%;
+            margin-right: 45%;
+            margin-left: 45%;
+            margin-top: 50px;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      <a href="index.html">Leave Request Page</a>
+      <a href="dashboard.html">Dashboard Page</a>
+      <a href="status.html">Status Page</a>
+    </div>
+    <form action="">
+        <input required type="text" id="unique" placeholder="Unique Id"><br><br>
+        <input required type="text" id="name" minlength="4" placeholder="Name" ><br><br>
+        <textarea required name="" id="reason" cols="30" rows="10" placeholder="Reason for leave"></textarea><br><br>
+        <legend>Designation</legend><br><br>
+        <input type="radio" id="employee" name="designation" value="employee">
+        <label for="employee">Employee</label>
+        <input type="radio" id="student" name="designation" value="student">
+        <label for="student">Student</label><br><br>
+        <input required type="date" id="startDate" min="2023-03-11">Leave Start Date</input><br><br>
+        <input required type="date" id="endDate">Leave End Date</input><br><br>
+        <select required name="" id="overseer">
+            <option value="Overseer">Overseer</option>
+            <option value="EC">EC</option>
+            <option value="HR">HR</option>
+            <option value="Manager">Manager</option>
+        </select><br><br>
+        <input type="submit" value="Apply">
+    </form>
+  </body>
+</html>
+<script src="index.js">
+</script>
