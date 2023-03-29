@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #nav{
+            display: flex;
+            justify-content: space-around;
+            background-color: wheat;
+            padding: 20px;
+            
+        }
+        #nav>a{
+            text-decoration: none;
+            font-size: 20px;
+            color: teal;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 40px;
+            width: 80%;
+            margin: auto;
+        }
+        #container>div>img{
+            width: 200px;
+        }
+        #search{
+            width: 20%;
+            margin: auto 35%;
+            margin-top: 30px;
+            margin-bottom: 30px;       
+     }
+     #buttons{
+        font-size: 20px;
+        padding: 10px;
+        margin: 20px 40%;
+     }
+     #buttons>button{
+        padding: 10px;
+     }
+        
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <a href="index.html">Signup</a>
+        <a href="signin.html">Signin</a>
+        <a href="home.html">Home</a>
+        <a id="protect" href="recipe.html">My Recipes</a>
+    </div>
+
+        <input id="search" type="text" placeholder="Search Recipe">
+
+        <select name="" id="category">
+            <option value="">Category</option>
+            <option value="starter">Starter</option>
+            <option value="main">Main Course</option>
+            <option value="desert">Dessert</option>
+        </select>
+   
+
+    <div id="container">
+
+    </div>
+
+    <div id="buttons"></div>
+    
+</body>
+</html>
+<script src="home.js"></script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            display: flex;
+            justify-content: space-around;
+            background-color: wheat;
+            padding: 20px;
+            
+        }
+        div>a{
+            text-decoration: none;
+            font-size: 20px;
+            color: teal;
+        }
+        form{
+            margin: 50px 40%;
+        }
+        input{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="index.html">Signup</a>
+        <a href="signin.html">Signin</a>
+        <a href="home.html">Home</a>
+        <a id="protect" href="recipe.html">My Recipes</a>
+    </div>
+    <form action="">
+        <h1>Sign In</h1>
+        <input required type="text" id="email" placeholder="Email"><br><br>
+        <input required type="password" name="" id="pass" placeholder="Password"><br><br>
+        <input type="submit">
+    </form>
+    
+</body>
+</html>
+<script src="signin.js"></script>
